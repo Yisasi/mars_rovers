@@ -19,16 +19,28 @@ public class App {
 			
 			String line = br.readLine();
 			int cont=0;
-			
+			HashMap<String, String> robots = new HashMap<String, String>();
+			String lastkey="";
 			while(line != null) {				
 				cont++;
 				if(cont==1) {
 					limite=line;
 				}
-				else if(cont%2==0) {}
-				else if(cont%2!=0) {}
-				System.out.println(line);
+				else if(cont%2==0) {
+					lastkey=line;
+					robots.put(line, "");
+				}
+				else if(cont%2!=0) {
+					robots.put(lastkey, line);
+				}
 				line = br.readLine();	
+			}
+			
+			for(String robot: robots.keySet()) {
+				String[] arr =robot.split(" ");
+				Robot rover = new Robot (Integer.parseInt(arr[0]), Integer.parseInt(arr[1]), arr[2]);
+				rover.moveRobot(robots.get(robot));
+				System.out.println(rover);
 			}
 			
 		} catch (FileNotFoundException e) {

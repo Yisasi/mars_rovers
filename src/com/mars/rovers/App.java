@@ -5,13 +5,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class App {
-
+	public static List<String> result=new ArrayList<>();
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		File file = new File("instruccions.txt");
+		
+		File file = new File("instructions.txt");
 		String limite="";
 		try {
 			FileReader fileReader = new FileReader(file);
@@ -36,11 +39,13 @@ public class App {
 				line = br.readLine();	
 			}
 			
+			
 			for(String robot: robots.keySet()) {
 				String[] arr =robot.split(" ");
 				Robot rover = new Robot (Integer.parseInt(arr[0]), Integer.parseInt(arr[1]), arr[2]);
 				rover.moveRobot(robots.get(robot), limite);
 				System.out.println(rover);
+				result.add(rover.toString());
 			}
 			
 		} catch (FileNotFoundException e) {

@@ -43,7 +43,8 @@ public class Robot {
 		return  x + " " + y + " " + orientation;
 	}
 
-	public void moveRobot(String instruccions) {
+	public void moveRobot(String instruccions, String limites) {
+		String[] limite = limites.split(" ");
 		HashMap<String, String> Lefts = new HashMap<String, String>();
 		Lefts.put("N", "O");
 		Lefts.put("S", "E");
@@ -62,16 +63,24 @@ public class Robot {
         for(Character paso: pasos){
                 if(paso.equals('M')) {
                 	if(this.getOrientation().equals("N")) {
-                		this.setY(this.getY()+1);
+                		if(this.getY()+1<=Integer.parseInt(limite[1])) {
+                			this.setY(this.getY()+1);
+                		}
                 	}
                 	else if (this.getOrientation().equals("S")) {
-                		this.setY(this.getY()-1);
+                		if(this.getY()-1>=0) {
+                			this.setY(this.getY()-1);
+                			}
                 	}
                 	else if (this.getOrientation().equals("E")) {
-                		this.setX(this.getX()+1);
+                		if(this.getX()+1<=Integer.parseInt(limite[0])) {
+                			this.setX(this.getX()+1);
+                		}
                 	}
                 	else if (this.getOrientation().equals("O")) {
-                		this.setX(this.getX()-1);
+                		if(this.getX()-1>=0) {
+                			this.setX(this.getX()-1);
+                		}
                 	}
                 }
                 else {

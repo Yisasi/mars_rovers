@@ -39,7 +39,7 @@ public class App {
 			for(String robot: robots.keySet()) {
 				String[] arr =robot.split(" ");
 				Robot rover = new Robot (Integer.parseInt(arr[0]), Integer.parseInt(arr[1]), arr[2]);
-				rover.moveRobot(robots.get(robot));
+				rover.moveRobot(robots.get(robot), limite);
 				System.out.println(rover);
 			}
 			
